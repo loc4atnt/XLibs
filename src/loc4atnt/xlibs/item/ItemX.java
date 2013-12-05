@@ -18,16 +18,6 @@ public class ItemX {
 	private ItemStack itemStack;
 	private NMS nms = XLibs.getInst().getNMS();
 
-	@SuppressWarnings("deprecation")
-	public ItemX(int typeId, int amount) {
-		this.itemStack = new ItemStack(typeId, amount);
-	}
-
-	@SuppressWarnings("deprecation")
-	public ItemX(int typeId, int amount, short damage, byte data) {
-		this.itemStack = new ItemStack(typeId, amount, damage, data);
-	}
-
 	public ItemX(Material material, int amount) {
 		this.itemStack = new ItemStack(material, amount);
 	}
@@ -188,5 +178,9 @@ public class ItemX {
 		meta.setUnbreakable(toggle);
 		itemStack.setItemMeta(meta);
 		return this;
+	}
+
+	public Material getType() {
+		return itemStack.getType();
 	}
 }

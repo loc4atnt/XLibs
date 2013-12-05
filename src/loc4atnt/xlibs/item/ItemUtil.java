@@ -86,12 +86,12 @@ public class ItemUtil {
 		return false;
 	}
 
-	@SuppressWarnings("deprecation")
-	public static boolean isArmor(ItemStack item) {
-		if (item == null || (item.getType().equals(Material.AIR)))
-			return false;
-
-		int typeId = item.getTypeId();
-		return (typeId >= 298 && typeId <= 317);
-	}
+//	@SuppressWarnings("deprecation")
+//	public static boolean isArmor(ItemStack item) {
+//		if (item == null || (item.getType().equals(Material.AIR)))
+//			return false;
+//
+//		int typeId = item.getTypeId();
+//		return (typeId >= 298 && typeId <= 317);
+//	}
 }

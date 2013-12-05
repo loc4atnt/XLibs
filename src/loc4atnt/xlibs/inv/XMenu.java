@@ -114,8 +114,7 @@ public abstract class XMenu {
 	}
 
 	public static void setupPage3X9(Player p, InventoryContents cont, XMenu previousMenu, ClickableItem... clicks) {
-		cont.fillBorders(
-				ClickableItem.empty(new ItemX(Material.STAINED_GLASS_PANE, 1, (short) 1, (byte) 9).toItemStack()));
+		cont.fillBorders(ClickableItem.empty(new ItemX(Material.LIGHT_BLUE_STAINED_GLASS_PANE, 1).toItemStack()));
 
 		Pagination page = cont.pagination();
 		page.setItems(clicks);

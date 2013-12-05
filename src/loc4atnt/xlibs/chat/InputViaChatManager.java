@@ -44,6 +44,6 @@ public class InputViaChatManager implements Listener {
 			task.accept(e);
 		}
 		taskMap.remove(p);
-		p.playSound(p.getLocation(), Sound.BLOCK_NOTE_BELL, 1, 1);
+		p.playSound(p.getLocation(), Sound.BLOCK_NOTE_BLOCK_BELL, 1, 1);
 	}
 }

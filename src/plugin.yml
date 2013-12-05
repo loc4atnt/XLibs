@@ -1,4 +1,5 @@
 name: XLibs
+api-version: 1.13
 author: loc4atnt
 main: loc4atnt.xlibs.main.XLibs
 version: 1.0.1
