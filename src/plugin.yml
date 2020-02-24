@@ -1,0 +1,5 @@
+name: XLibs
+author: loc4atnt
+main: loc4atnt.xlibs.main.XLibs
+version: 1.0.0
+depend: [PlayerPoints]

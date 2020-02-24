@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry excluding="src/" kind="src" path=""/>
+	<classpathentry kind="lib" path="E:/Spigot jar file/spigot-1.12.2.jar"/>
+	<classpathentry kind="lib" path="D:/skyblock/spigot.jar"/>
+	<classpathentry kind="lib" path="E:/Server MinePX/DOL/Server/plugins/worldguard-bukkit-6.2.2.jar"/>
+	<classpathentry kind="lib" path="E:/Server MinePX/DOL/Server/plugins/worldedit-bukkit-6.1.9.jar"/>
+	<classpathentry kind="lib" path="E:/Server MinePX/DOL/Server/plugins/PlayerPoints.jar"/>
+	<classpathentry kind="lib" path="E:/Server MinePX/DOL/Server/plugins/Vault.jar"/>
+	<classpathentry kind="lib" path="E:/Spigot jar file/MythicMobs-4.6.5.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
