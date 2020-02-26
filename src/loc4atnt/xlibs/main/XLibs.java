@@ -8,6 +8,7 @@ import loc4atnt.xlibs.config.SimpleConfigManager;
 import loc4atnt.xlibs.external.smartinv.fr.minuskube.inv.SmartInvsPlugin;
 import loc4atnt.xlibs.external.wgrevent.WGREvent;
 import loc4atnt.xlibs.item.SavingItemManager;
+import loc4atnt.xlibs.item.XNBTTagCommand;
 import loc4atnt.xlibs.money.MoneyManager;
 import loc4atnt.xlibs.mythicmobsutil.MMUtil;
 import loc4atnt.xlibs.nms.NMS;
@@ -37,6 +38,8 @@ public class XLibs extends JavaPlugin {
 		new MoneyManager();
 		if (getServer().getPluginManager().getPlugin("MythicMobs") != null)
 			new MMUtil();
+
+		getCommand("xtag").setExecutor(new XNBTTagCommand());
 	}
 
 	public static XLibs getInst() {
