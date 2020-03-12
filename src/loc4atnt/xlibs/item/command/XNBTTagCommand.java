@@ -1,4 +1,4 @@
-package loc4atnt.xlibs.item;
+package loc4atnt.xlibs.item.command;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,6 +8,8 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+
+import loc4atnt.xlibs.item.ItemX;
 
 public class XNBTTagCommand implements CommandExecutor {
 

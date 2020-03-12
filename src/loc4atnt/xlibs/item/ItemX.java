@@ -88,6 +88,12 @@ public class ItemX {
 		itemStack.setItemMeta(meta);
 		return this;
 	}
+	
+	public List<String> getLore() {
+		ItemMeta meta = itemStack.getItemMeta();
+		List<String> lore = meta.hasLore()?meta.getLore():new ArrayList<String>();
+		return lore;
+	}
 
 	public ItemX addLoreLine(String... line) {
 		ItemMeta meta = itemStack.getItemMeta();
