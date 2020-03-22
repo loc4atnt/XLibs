@@ -31,13 +31,16 @@ public class SavingItemCommand implements CommandExecutor {
 				item.setAmount(1);
 				SavingItemManager.getInst().setItem(arg[1], item);
 				p.sendMessage("§aXong!");
+				return true;
 			} else if (arg[0].equalsIgnoreCase("remove")) {
 				SavingItemManager.getInst().removeKey(arg[1]);
 				p.sendMessage("§aXong!");
+				return true;
 			} else if (arg[0].equalsIgnoreCase("get")) {
 				ItemStack item = SavingItemManager.getInst().getItem(arg[1]);
 				ItemUtil.giveItemToPlayerOrWarnCleanInv(p, item);
 				p.sendMessage("§aXong!");
+				return true;
 			}
 		}
 

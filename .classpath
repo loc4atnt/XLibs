@@ -9,6 +9,6 @@
 	<classpathentry kind="lib" path="E:/Server MinePX/DOL/Server/plugins/worldedit-bukkit-6.1.9.jar"/>
 	<classpathentry kind="lib" path="E:/Server MinePX/DOL/Server/plugins/PlayerPoints.jar"/>
 	<classpathentry kind="lib" path="E:/Server MinePX/DOL/Server/plugins/Vault.jar"/>
-	<classpathentry kind="lib" path="E:/Spigot jar file/MythicMobs-4.6.5.jar"/>
+	<classpathentry kind="lib" path="E:/Spigot jar file/MythicMobs-4.9.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
