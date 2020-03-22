@@ -89,4 +89,14 @@ public class v_1_12_R1 implements NMS {
 		skullMeta.setOwner(ownerName);
 		item.setItemMeta(skullMeta);
 	}
+
+	@Override
+	public boolean hasNBTTag(ItemStack itemStack, String tag) {
+		net.minecraft.server.v1_12_R1.ItemStack nmsItemStack = CraftItemStack.asNMSCopy(itemStack);
+		if (nmsItemStack.hasTag()) {
+			NBTTagCompound itemCompound = nmsItemStack.getTag();
+			return itemCompound.hasKey(tag);
+		}
+		return false;
+	}
 }

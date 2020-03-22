@@ -88,10 +88,10 @@ public class ItemX {
 		itemStack.setItemMeta(meta);
 		return this;
 	}
-	
+
 	public List<String> getLore() {
 		ItemMeta meta = itemStack.getItemMeta();
-		List<String> lore = meta.hasLore()?meta.getLore():new ArrayList<String>();
+		List<String> lore = meta.hasLore() ? meta.getLore() : new ArrayList<String>();
 		return lore;
 	}
 
@@ -133,6 +133,10 @@ public class ItemX {
 		meta.removeItemFlags(flag);
 		itemStack.setItemMeta(meta);
 		return this;
+	}
+
+	public boolean hasNBTTag(String tag) {
+		return nms.hasNBTTag(itemStack, tag);
 	}
 
 	public ItemX setStringToNBTTag(String tag, String value) {
