@@ -19,6 +19,7 @@ import loc4atnt.xlibs.playerpoints.PlayerPointsManager;
 
 public class XLibs extends JavaPlugin {
 
+	public static final String PERMISSION = "xlibs.*";
 	private NMS nms;
 	private static XLibs inst;
 	private SimpleConfigManager cfgMnger;

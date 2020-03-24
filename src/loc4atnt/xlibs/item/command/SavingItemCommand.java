@@ -9,6 +9,7 @@ import org.bukkit.inventory.ItemStack;
 
 import loc4atnt.xlibs.item.ItemUtil;
 import loc4atnt.xlibs.item.SavingItemManager;
+import loc4atnt.xlibs.main.XLibs;
 
 public class SavingItemCommand implements CommandExecutor {
 
@@ -20,6 +21,10 @@ public class SavingItemCommand implements CommandExecutor {
 			return true;
 		}
 		Player p = (Player) sender;
+		if (!p.hasPermission(XLibs.PERMISSION)) {
+			p.sendMessage("§cAdmin only!");
+			return true;
+		}
 
 		if (arg.length == 2) {
 			if (arg[0].equalsIgnoreCase("save")) {
