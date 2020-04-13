@@ -2,6 +2,7 @@ package loc4atnt.xlibs.spigotplayerinfor;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
@@ -26,7 +27,8 @@ public class XTeamInfo {
 		manager = Bukkit.getScoreboardManager();
 		board = manager.getNewScoreboard();
 		team = board.registerNewTeam(leader.getName());
-		obj = board.registerNewObjective(leader.getName() + "_obj_0", "dummy");
+		Random rd = new Random();
+		obj = board.registerNewObjective("obj0_" + rd.nextInt(10000), "dummy");
 
 		team.setCanSeeFriendlyInvisibles(true);
 		team.setAllowFriendlyFire(false);
@@ -62,7 +64,8 @@ public class XTeamInfo {
 	@SuppressWarnings("deprecation")
 	public void updateBoard(String title, List<String> text) {
 		obj.unregister();
-		obj = board.registerNewObjective(leader.getName() + "_obj_0", "dummy");
+		Random rd = new Random();
+		obj = board.registerNewObjective("obj0_" + rd.nextInt(10000), "dummy");
 		obj.setDisplayName(title);
 		obj.setDisplaySlot(DisplaySlot.SIDEBAR);
 		int size = text.size();
