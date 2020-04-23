@@ -4,6 +4,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import loc4atnt.xlibs.chat.InputViaChatManager;
 import loc4atnt.xlibs.config.SimpleConfigManager;
 import loc4atnt.xlibs.external.smartinv.fr.minuskube.inv.SmartInvsPlugin;
 import loc4atnt.xlibs.external.wgrevent.WGREvent;
@@ -40,6 +41,7 @@ public class XLibs extends JavaPlugin {
 		new MoneyManager();
 		if (getServer().getPluginManager().getPlugin("MythicMobs") != null)
 			new MMUtil();
+		new InputViaChatManager();
 
 		getCommand("xtag").setExecutor(new XNBTTagCommand());
 		getCommand("saveitem").setExecutor(new SavingItemCommand());

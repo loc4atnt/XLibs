@@ -4,12 +4,14 @@ import java.util.List;
 
 import org.bukkit.Location;
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 
 import io.lumine.xikage.mythicmobs.MythicMobs;
 import io.lumine.xikage.mythicmobs.api.bukkit.BukkitAPIHelper;
 import io.lumine.xikage.mythicmobs.api.exceptions.InvalidMobTypeException;
+import io.lumine.xikage.mythicmobs.mobs.ActiveMob;
 import loc4atnt.xlibs.main.XLibs;
 
 public class MMUtil {
@@ -54,6 +56,12 @@ public class MMUtil {
 		} catch (InvalidMobTypeException e) {
 			//
 		}
+	}
+
+	public void taunt(Entity mob, LivingEntity target) {
+		ActiveMob aM = MythicMobPlugin.getAPIHelper().getMythicMobInstance(mob);
+		aM.resetTarget();
+		MythicMobPlugin.getAPIHelper().taunt(mob, target);
 	}
 
 	public void spawnMythicMob(List<Entity> list, String mobTypeName, Location spawnMobLocation, Player p) {
