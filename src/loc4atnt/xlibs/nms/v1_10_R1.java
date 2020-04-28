@@ -129,8 +129,7 @@ public class v1_10_R1 implements NMS {
 
 	@Override
 	public RegionManager getWGRegionManager(World world) {
-		// return WGREvent.wgPlugin.getRegionManager(world);
-		return null;
+		return WGREvent.wgPlugin.getRegionManager(world);
 	}
 
 	@Override
