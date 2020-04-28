@@ -1,5 +1,8 @@
 package loc4atnt.xlibs.main;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -14,8 +17,6 @@ import loc4atnt.xlibs.item.command.XNBTTagCommand;
 import loc4atnt.xlibs.money.MoneyManager;
 import loc4atnt.xlibs.mythicmobsutil.MMUtil;
 import loc4atnt.xlibs.nms.NMS;
-import loc4atnt.xlibs.nms.v_1_10_R1;
-import loc4atnt.xlibs.nms.v_1_12_R1;
 import loc4atnt.xlibs.playerpoints.PlayerPointsManager;
 
 public class XLibs extends JavaPlugin {
@@ -59,15 +60,12 @@ public class XLibs extends JavaPlugin {
 		String version;
 		try {
 			version = Bukkit.getServer().getClass().getPackage().getName().replace(".", ",").split(",")[3];
-			switch (version) {
-			case "v1_10_R1":
-				nms = new v_1_10_R1();
-				break;
-			case "v1_12_R1":
-				nms = new v_1_12_R1();
-				break;
-			}
-		} catch (ArrayIndexOutOfBoundsException exn) {
+			Class<?> clazz = Class.forName("loc4atnt.xlibs.nms." + version);
+			Constructor<?> constructor = clazz.getConstructor();
+			nms = (NMS) constructor.newInstance();
+		} catch (ArrayIndexOutOfBoundsException | ClassNotFoundException | NoSuchMethodException | SecurityException
+				| InstantiationException | IllegalAccessException | IllegalArgumentException
+				| InvocationTargetException exn) {
 			exn.printStackTrace();
 		}
 	}

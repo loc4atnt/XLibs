@@ -19,7 +19,6 @@ import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
 import org.bukkit.event.player.PlayerTeleportEvent;
 
-import com.sk89q.worldguard.bukkit.WorldGuardPlugin;
 import com.sk89q.worldguard.protection.ApplicableRegionSet;
 import com.sk89q.worldguard.protection.managers.RegionManager;
 import com.sk89q.worldguard.protection.regions.ProtectedRegion;
@@ -31,12 +30,10 @@ import loc4atnt.xlibs.external.wgrevent.events.RegionLeftEvent;
 import loc4atnt.xlibs.main.XLibs;
 
 public class WGREventListener implements Listener {
-	
-	private WorldGuardPlugin wgPlugin;
+
 	private HashMap<Player, Set<ProtectedRegion>> playerRegions;
 
-	public WGREventListener(WorldGuardPlugin wgPlugin) {
-		this.wgPlugin = wgPlugin;
+	public WGREventListener() {
 		this.playerRegions = new HashMap<Player, Set<ProtectedRegion>>();
 	}
 
@@ -75,7 +72,7 @@ public class WGREventListener implements Listener {
 	public void onPlayerTeleport(PlayerTeleportEvent e) {
 		Location fromLocation = e.getFrom();
 		Location toLocation = e.getTo();
-		if(fromLocation.getWorld().equals(toLocation.getWorld())) {
+		if (fromLocation.getWorld().equals(toLocation.getWorld())) {
 			e.setCancelled(updateRegions(e.getPlayer(), MovementWay.TELEPORT_INSIDE_WORLD, e.getTo(), e));
 		} else {
 			e.setCancelled(updateRegionsWhenChangeWorld(e.getPlayer(), MovementWay.TELEPORT_OUTSIDE_WORLD, e));
@@ -102,11 +99,11 @@ public class WGREventListener implements Listener {
 		}
 		Set<ProtectedRegion> oldRegions = new HashSet<ProtectedRegion>(regions);
 
-		RegionManager rm = this.wgPlugin.getRegionManager(to.getWorld());
+		RegionManager rm = XLibs.getInst().getNMS().getWGRegionManager(to.getWorld());
 		if (rm == null) {
 			return false;
 		}
-		ApplicableRegionSet appRegions = rm.getApplicableRegions(to);
+		ApplicableRegionSet appRegions = XLibs.getInst().getNMS().getApplicableRegionSet(to);
 		for (final ProtectedRegion region : appRegions) {
 			if (!regions.contains(region)) {
 				RegionEnterEvent e = new RegionEnterEvent(region, player, movement, event);
@@ -154,19 +151,19 @@ public class WGREventListener implements Listener {
 		this.playerRegions.put(player, regions);
 		return false;
 	}
-	
+
 	private synchronized boolean updateRegionsWhenChangeWorld(final Player p, final MovementWay movement,
 			final PlayerTeleportEvent event) {
 		Location toLoca = event.getTo();
-		
+
 		Set<ProtectedRegion> oldRegions;
 		if (this.playerRegions.get(p) == null) {
 			oldRegions = new HashSet<ProtectedRegion>();
 		} else {
 			oldRegions = new HashSet<ProtectedRegion>((Collection<ProtectedRegion>) this.playerRegions.get(p));
 		}
-		
-		for(ProtectedRegion rg:oldRegions) {
+
+		for (ProtectedRegion rg : oldRegions) {
 			RegionLeaveEvent e = new RegionLeaveEvent(rg, p, movement, event);
 			XLibs.getInst().getServer().getPluginManager().callEvent(e);
 			if (e.isCancelled()) {
@@ -179,11 +176,12 @@ public class WGREventListener implements Listener {
 				}
 			}, 1L);
 		}
-		
+
 		Set<ProtectedRegion> newRegions = new HashSet<ProtectedRegion>();
-		RegionManager regionToManager = this.wgPlugin.getRegionManager(toLoca.getWorld());
+		RegionManager regionToManager = XLibs.getInst().getNMS().getWGRegionManager(toLoca.getWorld());
 		if (regionToManager != null) {
-			ApplicableRegionSet appRegionsLocaTo = regionToManager.getApplicableRegions(toLoca);
+			ApplicableRegionSet appRegionsLocaTo = XLibs.getInst().getNMS().getApplicableRegionSet(toLoca);
+			;
 			for (ProtectedRegion rg : appRegionsLocaTo) {
 				RegionEnterEvent e = new RegionEnterEvent(rg, p, movement, event);
 				XLibs.getInst().getServer().getPluginManager().callEvent(e);
@@ -199,7 +197,7 @@ public class WGREventListener implements Listener {
 				newRegions.add(rg);
 			}
 		}
-		
+
 		this.playerRegions.put(p, newRegions);
 		return false;
 	}

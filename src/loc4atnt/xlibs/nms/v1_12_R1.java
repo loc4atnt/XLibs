@@ -3,18 +3,24 @@ package loc4atnt.xlibs.nms;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.bukkit.Location;
+import org.bukkit.World;
 import org.bukkit.craftbukkit.v1_12_R1.inventory.CraftItemStack;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SkullMeta;
 
+import com.sk89q.worldguard.protection.ApplicableRegionSet;
+import com.sk89q.worldguard.protection.managers.RegionManager;
+
+import loc4atnt.xlibs.external.wgrevent.WGREvent;
 import net.minecraft.server.v1_12_R1.NBTTagInt;
 import net.minecraft.server.v1_12_R1.NBTBase;
 import net.minecraft.server.v1_12_R1.NBTTagCompound;
 import net.minecraft.server.v1_12_R1.NBTTagIntArray;
 import net.minecraft.server.v1_12_R1.NBTTagString;
 
-public class v_1_12_R1 implements NMS {
+public class v1_12_R1 implements NMS {
 
 	public ItemStack setNBTTag(ItemStack itemStack, String tag, NBTBase value) {
 		net.minecraft.server.v1_12_R1.ItemStack nmsItemStack = CraftItemStack.asNMSCopy(itemStack);
@@ -98,5 +104,16 @@ public class v_1_12_R1 implements NMS {
 			return itemCompound.hasKey(tag);
 		}
 		return false;
+	}
+
+	@Override
+	public RegionManager getWGRegionManager(World world) {
+		return WGREvent.wgPlugin.getRegionManager(world);
+	}
+
+	@Override
+	public ApplicableRegionSet getApplicableRegionSet(Location loca) {
+		RegionManager rm = getWGRegionManager(loca.getWorld());
+		return rm.getApplicableRegions(loca);
 	}
 }
