@@ -10,6 +10,6 @@
 	<classpathentry kind="lib" path="E:/Spigot jar file/MythicMobs-4.6.5.jar"/>
 	<classpathentry kind="lib" path="E:/Spigot jar file/spigot-1.14.4.jar"/>
 	<classpathentry kind="lib" path="E:/Spigot jar file/worldguard-bukkit-7.0.2.jar"/>
-	<classpathentry kind="lib" path="E:/Spigot jar file/worldedit-bukkit-7.1.0.jar"/>
+	<classpathentry kind="lib" path="E:/Spigot jar file/FastAsyncWorldEdit-1.15-183.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
