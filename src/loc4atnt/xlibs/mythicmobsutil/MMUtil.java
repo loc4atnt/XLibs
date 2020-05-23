@@ -44,8 +44,8 @@ public class MMUtil {
 		try {
 			for (int i = 0; i < amount; i++) {
 				Entity mob = api.spawnMythicMob(mobTypeName, spawnMobLocation);
-				synchronized (list) {
-					if (list != null) {
+				if (list != null) {
+					synchronized (list) {
 						list.add(mob);
 					}
 				}
