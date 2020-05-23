@@ -64,6 +64,10 @@ public class MMUtil {
 		MythicMobPlugin.getAPIHelper().taunt(mob, target);
 	}
 
+	public void spawnMythicMob(String mobTypeName, Location spawnMobLocation) {
+		spawnMythicMob(null, mobTypeName, spawnMobLocation, null, 1);
+	}
+
 	public void spawnMythicMob(List<Entity> list, String mobTypeName, Location spawnMobLocation, Player p) {
 		spawnMythicMob(list, mobTypeName, spawnMobLocation, p, 1);
 	}
