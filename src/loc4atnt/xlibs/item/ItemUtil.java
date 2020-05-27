@@ -65,6 +65,27 @@ public class ItemUtil {
 		return false;
 	}
 
+	public static boolean checkEnoughAmountOfItem(ItemStack removedItem, int amount, Player p) {
+		PlayerInventory inv = p.getInventory();
+		ItemStack invItem[] = inv.getContents();
+		for (ItemStack item : invItem) {
+			if (item == null)
+				continue;
+			if (item.getType().equals(Material.AIR))
+				continue;
+			if (item.isSimilar(removedItem)) {
+				int itemAmount = item.getAmount();
+				if (itemAmount > amount)
+					amount = 0;
+				else
+					amount -= itemAmount;
+			}
+			if (amount <= 0)
+				return true;
+		}
+		return false;
+	}
+
 	@SuppressWarnings("deprecation")
 	public static boolean isArmor(ItemStack item) {
 		if (item == null || (item.getType().equals(Material.AIR)))
