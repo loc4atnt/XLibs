@@ -17,6 +17,7 @@ import loc4atnt.xlibs.item.command.XNBTTagCommand;
 import loc4atnt.xlibs.money.MoneyManager;
 import loc4atnt.xlibs.mythicmobsutil.MMUtil;
 import loc4atnt.xlibs.nms.NMS;
+import loc4atnt.xlibs.permission.PermissionUtil;
 import loc4atnt.xlibs.playerpoints.PlayerPointsManager;
 
 public class XLibs extends JavaPlugin {
@@ -40,6 +41,7 @@ public class XLibs extends JavaPlugin {
 		new SavingItemManager();
 		new PlayerPointsManager();
 		new MoneyManager();
+		new PermissionUtil();
 		if (getServer().getPluginManager().getPlugin("MythicMobs") != null)
 			new MMUtil();
 		new InputViaChatManager();
