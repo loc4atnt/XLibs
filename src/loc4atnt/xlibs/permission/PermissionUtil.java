@@ -2,6 +2,7 @@ package loc4atnt.xlibs.permission;
 
 import java.util.Set;
 
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.permissions.PermissionAttachmentInfo;
 import org.bukkit.plugin.RegisteredServiceProvider;
@@ -42,7 +43,10 @@ public class PermissionUtil {
 		for (PermissionAttachmentInfo perm : permSet) {
 			if (perm.getPermission().startsWith(prePerm)) {
 				String[] args = perm.getPermission().split(".");
-				int val = Integer.parseInt(args[args.length - 1]);
+				for (String s : args)
+					Bukkit.getConsoleSender().sendMessage(s);
+				int index = args.length - 1;
+				int val = index >= 0 ? Integer.parseInt(args[index]) : -1;
 				if (val > maxVal)
 					maxVal = val;
 			}
