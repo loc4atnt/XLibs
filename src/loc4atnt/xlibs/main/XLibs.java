@@ -48,6 +48,7 @@ public class XLibs extends JavaPlugin {
 
 		getCommand("xtag").setExecutor(new XNBTTagCommand());
 		getCommand("saveitem").setExecutor(new SavingItemCommand());
+		getCommand("testx").setExecutor(new TestCommand());
 	}
 
 	public static XLibs getInst() {
