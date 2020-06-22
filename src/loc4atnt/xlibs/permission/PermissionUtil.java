@@ -1,8 +1,9 @@
 package loc4atnt.xlibs.permission;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.permissions.PermissionAttachmentInfo;
 import org.bukkit.plugin.RegisteredServiceProvider;
@@ -42,15 +43,32 @@ public class PermissionUtil {
 		Set<PermissionAttachmentInfo> permSet = p.getEffectivePermissions();
 		for (PermissionAttachmentInfo perm : permSet) {
 			if (perm.getPermission().startsWith(prePerm)) {
-				String[] args = perm.getPermission().split(".");
-				for (String s : args)
-					Bukkit.getConsoleSender().sendMessage(s);
-				int index = args.length - 1;
-				int val = index >= 0 ? Integer.parseInt(args[index]) : -1;
+				List<String> args = split(perm.getPermission(), '.');
+				int index = args.size() - 1;
+				int val = ((index >= 0) ? Integer.parseInt(args.get(index)) : -1);
 				if (val > maxVal)
 					maxVal = val;
 			}
 		}
 		return maxVal;
+	}
+
+	public List<String> split(String target, char regex) {
+		List<String> list = new ArrayList<String>();
+		int bgIndex = 0;
+		int endIndex = 0;
+		for (int i = 0; i < target.length(); i++) {
+			if (target.charAt(i) == regex) {
+				endIndex = i;
+				String element = target.substring(bgIndex, endIndex);
+				list.add(element);
+				bgIndex = i + 1;
+			}
+		}
+		if (bgIndex < target.length()) {
+			String lastElement = target.substring(bgIndex);
+			list.add(lastElement);
+		}
+		return list;
 	}
 }
