@@ -189,4 +189,8 @@ public class ItemX {
 		itemStack.setItemMeta(meta);
 		return this;
 	}
+
+	public Material getType() {
+		return itemStack.getType();
+	}
 }
