@@ -94,7 +94,7 @@ public abstract class XMenu {
 	@SuppressWarnings("deprecation")
 	public static ClickableItem getInteractClickableItem(InventoryContents cont, ItemStack firstItem, int row,
 			int column) {
-		return ClickableItem.of(null, e -> {
+		return ClickableItem.of(firstItem, e -> {
 			ItemStack cursorItem = e.getCursor();
 			ItemStack putItem = e.getCurrentItem();
 			if (putItem != null) {
