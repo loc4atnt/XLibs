@@ -36,6 +36,8 @@ public interface NMS {
 
 	public boolean hasNBTTag(ItemStack itemStack, String tag);
 
+	public ItemStack removeNBTTag(ItemStack itemStack, String tag);
+
 	public RegionManager getWGRegionManager(World world);
 
 	public ApplicableRegionSet getApplicableRegionSet(Location loca);
