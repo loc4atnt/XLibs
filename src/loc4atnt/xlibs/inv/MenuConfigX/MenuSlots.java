@@ -22,6 +22,12 @@ public class MenuSlots {
 		this.skinHead = skinHead;
 	}
 
+	public MenuSlots(List<Integer> slots) {
+		this.item = null;
+		this.slots = new ArrayList<Integer>(slots);
+		this.skinHead = null;
+	}
+
 	public MenuSlots(MenuSlots menuSlots) {
 		this.item = new ItemX(menuSlots.item);
 		this.slots = new ArrayList<Integer>(menuSlots.slots);

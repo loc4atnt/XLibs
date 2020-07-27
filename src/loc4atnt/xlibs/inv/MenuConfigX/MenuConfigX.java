@@ -25,11 +25,16 @@ public class MenuConfigX {
 
 		if (cfg.contains(path + ".item"))
 			for (String key : cfg.getConfigurationSection(path + ".item").getKeys(false)) {
-				ItemX item = getItemFromConfig(cfg, path + ".item." + key);
 				List<Integer> slots = (List<Integer>) cfg.getList(path + ".item." + key + ".slots",
 						new ArrayList<Integer>());
-				String skinHead = cfg.getString(path + ".item." + key + ".skin");
-				MenuSlots menuSlot = new MenuSlots(item, slots, skinHead);
+				ItemX item = getItemFromConfig(cfg, path + ".item." + key);
+				MenuSlots menuSlot;
+				if (item != null) {
+					String skinHead = cfg.getString(path + ".item." + key + ".skin");
+					menuSlot = new MenuSlots(item, slots, skinHead);
+				} else {
+					menuSlot = new MenuSlots(slots);
+				}
 				slotMap.put(key, menuSlot);
 			}
 	}
@@ -53,10 +58,12 @@ public class MenuConfigX {
 	 */
 	@SuppressWarnings("unchecked")
 	public static ItemX getItemFromConfig(SimpleConfig cfg, String path) {
+		String id = cfg.getString(path + ".id", null);
+		if (id == null)
+			return null;
 		List<String> colorLore = Color
 				.convertRawToColorLore((List<String>) cfg.getList(path + ".lore", new ArrayList<String>()));
 		String name = Color.convert(cfg.getString(path + ".name", ""));
-		String id = cfg.getString(path + ".id", "STONE");
 		ItemX itemX;
 		Material m = Material.matchMaterial(id);
 		if (m == null)
