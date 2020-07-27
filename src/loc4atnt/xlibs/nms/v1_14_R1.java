@@ -21,6 +21,7 @@ import net.minecraft.server.v1_14_R1.NBTBase;
 import net.minecraft.server.v1_14_R1.NBTTagCompound;
 import net.minecraft.server.v1_14_R1.NBTTagInt;
 import net.minecraft.server.v1_14_R1.NBTTagIntArray;
+import net.minecraft.server.v1_14_R1.NBTTagLong;
 import net.minecraft.server.v1_14_R1.NBTTagString;
 
 public class v1_14_R1 implements NMS {
@@ -77,6 +78,17 @@ public class v1_14_R1 implements NMS {
 	public int getIntFromNBTTag(ItemStack itemStack, String tag, int defValue) {
 		NBTTagCompound itemCompound = getNBTTag(itemStack);
 		return itemCompound.hasKey(tag) ? itemCompound.getInt(tag) : defValue;
+	}
+
+	@Override
+	public ItemStack setLongToNBTTag(ItemStack itemStack, String tag, long value) {
+		return setNBTTag(itemStack, tag, new NBTTagLong(value));
+	}
+
+	@Override
+	public long getLongFromNBTTag(ItemStack itemStack, String tag, long defValue) {
+		NBTTagCompound itemCompound = getNBTTag(itemStack);
+		return itemCompound.hasKey(tag) ? itemCompound.getLong(tag) : defValue;
 	}
 
 	@Override

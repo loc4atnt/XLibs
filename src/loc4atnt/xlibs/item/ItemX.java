@@ -51,10 +51,12 @@ public class ItemX {
 		return this.itemStack;
 	}
 
+	@SuppressWarnings("deprecation")
 	public int getDura() {
 		return itemStack.getDurability();
 	}
 
+	@SuppressWarnings("deprecation")
 	public ItemX setDurability(short dura) {
 		itemStack.setDurability(dura);
 		return this;
@@ -166,6 +168,19 @@ public class ItemX {
 
 	public int getIntFromNBTTag(String tag) {
 		return getIntFromNBTTag(tag, 0);
+	}
+
+	public ItemX setLongToNBTTag(String tag, long value) {
+		this.itemStack = nms.setLongToNBTTag(itemStack, tag, value);
+		return this;
+	}
+
+	public long getLongFromNBTTag(String tag, long defValue) {
+		return nms.getLongFromNBTTag(itemStack, tag, defValue);
+	}
+
+	public long getLongFromNBTTag(String tag) {
+		return getLongFromNBTTag(tag, 0);
 	}
 
 	public ItemX setAmount(int amount) {

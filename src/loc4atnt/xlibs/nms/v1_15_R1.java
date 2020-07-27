@@ -39,6 +39,11 @@ public class v1_15_R1 implements NMS {
 		return itemStack;
 	}
 
+	private NBTTagCompound getNBTTagCompound(ItemStack itemStack) {
+		net.minecraft.server.v1_15_R1.ItemStack nmsItemStack = CraftItemStack.asNMSCopy(itemStack);
+		return ((nmsItemStack.hasTag()) ? nmsItemStack.getTag() : new NBTTagCompound());
+	}
+
 	public NBTTagCompound getNBTTag(ItemStack itemStack) {
 		net.minecraft.server.v1_15_R1.ItemStack nmsItemStack = CraftItemStack.asNMSCopy(itemStack);
 		NBTTagCompound itemCompound = (nmsItemStack.hasTag()) ? nmsItemStack.getTag() : new NBTTagCompound();
@@ -46,7 +51,7 @@ public class v1_15_R1 implements NMS {
 	}
 
 	public ItemStack setStringToNBTTag(ItemStack itemStack, String tag, String value) {
-		NBTTagCompound nbtTag = new NBTTagCompound();
+		NBTTagCompound nbtTag = getNBTTagCompound(itemStack);
 		nbtTag.setString(tag, value);
 		return setNBTTag(itemStack, nbtTag);
 	}
@@ -77,7 +82,7 @@ public class v1_15_R1 implements NMS {
 
 	@Override
 	public ItemStack setIntToNBTTag(ItemStack itemStack, String tag, int value) {
-		NBTTagCompound nbtTag = new NBTTagCompound();
+		NBTTagCompound nbtTag = getNBTTagCompound(itemStack);
 		nbtTag.setInt(tag, value);
 		return setNBTTag(itemStack, nbtTag);
 	}
@@ -86,6 +91,19 @@ public class v1_15_R1 implements NMS {
 	public int getIntFromNBTTag(ItemStack itemStack, String tag, int defValue) {
 		NBTTagCompound itemCompound = getNBTTag(itemStack);
 		return itemCompound.hasKey(tag) ? itemCompound.getInt(tag) : defValue;
+	}
+
+	@Override
+	public ItemStack setLongToNBTTag(ItemStack itemStack, String tag, long value) {
+		NBTTagCompound nbtTag = getNBTTagCompound(itemStack);
+		nbtTag.setLong(tag, value);
+		return setNBTTag(itemStack, nbtTag);
+	}
+
+	@Override
+	public long getLongFromNBTTag(ItemStack itemStack, String tag, long defValue) {
+		NBTTagCompound itemCompound = getNBTTag(itemStack);
+		return itemCompound.hasKey(tag) ? itemCompound.getLong(tag) : defValue;
 	}
 
 	@Override
