@@ -122,6 +122,18 @@ public class v1_14_R1 implements NMS {
 	}
 
 	@Override
+	public ItemStack removeNBTTag(ItemStack itemStack, String tag) {
+		net.minecraft.server.v1_14_R1.ItemStack nmsItemStack = CraftItemStack.asNMSCopy(itemStack);
+		if (nmsItemStack.hasTag()) {
+			NBTTagCompound itemCompound = nmsItemStack.getTag();
+			itemCompound.remove(tag);
+			nmsItemStack.setTag(itemCompound);
+			itemStack = CraftItemStack.asBukkitCopy(nmsItemStack);
+		}
+		return itemStack;
+	}
+
+	@Override
 	public RegionManager getWGRegionManager(World world) {
 		RegionContainer container = WorldGuard.getInstance().getPlatform().getRegionContainer();
 		return container.get(BukkitAdapter.adapt(world));

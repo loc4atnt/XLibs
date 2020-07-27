@@ -127,6 +127,11 @@ public class ItemX {
 		return this;
 	}
 
+	public ItemX removeNBTTag(String tag) {
+		this.itemStack = nms.removeNBTTag(itemStack, tag);
+		return this;
+	}
+
 	public boolean hasNBTTag(String tag) {
 		return nms.hasNBTTag(itemStack, tag);
 	}
