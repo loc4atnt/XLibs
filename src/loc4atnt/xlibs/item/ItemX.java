@@ -178,6 +178,19 @@ public class ItemX {
 		return getIntFromNBTTag(tag, 0);
 	}
 
+	public ItemX setLongToNBTTag(String tag, long value) {
+		this.itemStack = nms.setLongToNBTTag(itemStack, tag, value);
+		return this;
+	}
+
+	public long getLongFromNBTTag(String tag, long defValue) {
+		return nms.getLongFromNBTTag(itemStack, tag, defValue);
+	}
+
+	public long getLongFromNBTTag(String tag) {
+		return getLongFromNBTTag(tag, 0);
+	}
+
 	public ItemX setAmount(int amount) {
 		this.itemStack.setAmount(amount);
 		return this;

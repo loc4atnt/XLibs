@@ -24,6 +24,10 @@ public interface NMS {
 
 	public int getIntFromNBTTag(ItemStack itemStack, String tag, int defValue);
 
+	public ItemStack setLongToNBTTag(ItemStack itemStack, String tag, long value);
+
+	public long getLongFromNBTTag(ItemStack itemStack, String tag, long defValue);
+
 	public void sendTitle(Player p, String upTitle, String downTitle, int fadeIn, int duration, int fadeOut);
 
 	public void setOwnerSkull(ItemStack item, Player owner);
