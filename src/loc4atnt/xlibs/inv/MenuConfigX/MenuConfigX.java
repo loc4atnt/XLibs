@@ -71,6 +71,13 @@ public class MenuConfigX {
 		itemX = new ItemX(m, 1);
 		itemX.setName(name);
 		itemX.setLore(colorLore);
+		//
+		String duraPath = path + ".dura";
+		if (cfg.contains(duraPath)) {
+			int dura = cfg.getInt(duraPath);
+			itemX.setUnbreakable(true);
+			itemX.setDurability((short) dura);
+		}
 		return itemX;
 	}
 
