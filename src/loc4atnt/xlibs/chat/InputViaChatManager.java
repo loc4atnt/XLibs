@@ -39,11 +39,10 @@ public class InputViaChatManager implements Listener {
 		Player p = e.getPlayer();
 		if (!taskMap.containsKey(p))
 			return;
+		Consumer<AsyncPlayerChatEvent> task = taskMap.remove(p);
 		if (!e.getMessage().equals("huy")) {
-			Consumer<AsyncPlayerChatEvent> task = taskMap.get(p);
 			task.accept(e);
 		}
-		taskMap.remove(p);
 		p.playSound(p.getLocation(), Sound.BLOCK_NOTE_BELL, 1, 1);
 	}
 }
