@@ -68,19 +68,27 @@ public abstract class XMenu {
 	}
 
 	public void open() {
+		open(false);
+	}
+
+	public void open(boolean isAsync) {
 		if (p == null) {
 			Bukkit.getConsoleSender().sendMessage("§cError With XMenu - XLibs: null player open menu!");
 			return;
 		}
-		inv.open(p);
+		inv.open(p, isAsync);
 	}
 
 	public void open(int page) {
+		open(page, false);
+	}
+
+	public void open(int page, boolean isAsync) {
 		if (p == null) {
 			Bukkit.getConsoleSender().sendMessage("§cError With XMenu - XLibs: null player open menu!");
 			return;
 		}
-		inv.open(p, page);
+		inv.open(p, page, isAsync);
 	}
 
 	public void open(Player player) {
@@ -89,6 +97,14 @@ public abstract class XMenu {
 
 	public void open(Player player, int page) {
 		inv.open(player, page);
+	}
+
+	public void open(Player player, boolean isAsync) {
+		inv.open(player, isAsync);
+	}
+
+	public void open(Player player, int page, boolean isAsync) {
+		inv.open(player, page, isAsync);
 	}
 
 	@SuppressWarnings("deprecation")
