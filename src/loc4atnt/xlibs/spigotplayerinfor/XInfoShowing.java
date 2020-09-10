@@ -36,6 +36,7 @@ public class XInfoShowing {
 							, ChatColor.YELLOW.toString()+ChatColor.RESET.toString()};
 	public static int diffCharArrSize = 21;
 
+	@SuppressWarnings("deprecation")
 	public static void sendBoard(Player p, String title, List<String> text) {
 		ScoreboardManager boardMng = Bukkit.getScoreboardManager();
 		Scoreboard board = boardMng.getNewScoreboard();

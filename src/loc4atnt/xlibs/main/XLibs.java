@@ -10,13 +10,13 @@ import org.bukkit.plugin.java.JavaPlugin;
 import loc4atnt.xlibs.chat.InputViaChatManager;
 import loc4atnt.xlibs.config.SimpleConfigManager;
 import loc4atnt.xlibs.external.smartinv.fr.minuskube.inv.SmartInvsPlugin;
-import loc4atnt.xlibs.external.wgrevent.WGREvent;
 import loc4atnt.xlibs.item.SavingItemManager;
 import loc4atnt.xlibs.item.command.SavingItemCommand;
 import loc4atnt.xlibs.item.command.XNBTTagCommand;
 import loc4atnt.xlibs.money.MoneyManager;
 import loc4atnt.xlibs.mythicmobsutil.MMUtil;
 import loc4atnt.xlibs.nms.NMS;
+import loc4atnt.xlibs.permission.PermissionUtil;
 import loc4atnt.xlibs.playerpoints.PlayerPointsManager;
 
 public class XLibs extends JavaPlugin {
@@ -36,16 +36,17 @@ public class XLibs extends JavaPlugin {
 		cfgMnger = new SimpleConfigManager(this);
 		setupNMS();
 		new SmartInvsPlugin().register();
-		new WGREvent().register();
 		new SavingItemManager();
 		new PlayerPointsManager();
 		new MoneyManager();
+		new PermissionUtil();
 		if (getServer().getPluginManager().getPlugin("MythicMobs") != null)
 			new MMUtil();
 		new InputViaChatManager();
 
 		getCommand("xtag").setExecutor(new XNBTTagCommand());
 		getCommand("saveitem").setExecutor(new SavingItemCommand());
+		getCommand("testx").setExecutor(new TestCommand());
 	}
 
 	public static XLibs getInst() {

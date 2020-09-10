@@ -3,24 +3,16 @@ package loc4atnt.xlibs.nms;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.bukkit.Location;
-import org.bukkit.World;
 import org.bukkit.craftbukkit.v1_14_R1.inventory.CraftItemStack;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SkullMeta;
 
-import com.sk89q.worldedit.bukkit.BukkitAdapter;
-import com.sk89q.worldedit.math.BlockVector3;
-import com.sk89q.worldguard.WorldGuard;
-import com.sk89q.worldguard.protection.ApplicableRegionSet;
-import com.sk89q.worldguard.protection.managers.RegionManager;
-import com.sk89q.worldguard.protection.regions.RegionContainer;
-
 import net.minecraft.server.v1_14_R1.NBTBase;
 import net.minecraft.server.v1_14_R1.NBTTagCompound;
 import net.minecraft.server.v1_14_R1.NBTTagInt;
 import net.minecraft.server.v1_14_R1.NBTTagIntArray;
+import net.minecraft.server.v1_14_R1.NBTTagLong;
 import net.minecraft.server.v1_14_R1.NBTTagString;
 
 public class v1_14_R1 implements NMS {
@@ -80,6 +72,17 @@ public class v1_14_R1 implements NMS {
 	}
 
 	@Override
+	public ItemStack setLongToNBTTag(ItemStack itemStack, String tag, long value) {
+		return setNBTTag(itemStack, tag, new NBTTagLong(value));
+	}
+
+	@Override
+	public long getLongFromNBTTag(ItemStack itemStack, String tag, long defValue) {
+		NBTTagCompound itemCompound = getNBTTag(itemStack);
+		return itemCompound.hasKey(tag) ? itemCompound.getLong(tag) : defValue;
+	}
+
+	@Override
 	public void sendTitle(Player p, String upTitle, String downTitle, int fadeIn, int duration, int fadeOut) {
 		p.sendTitle(upTitle, downTitle, fadeIn, duration, fadeOut);
 	}
@@ -110,14 +113,14 @@ public class v1_14_R1 implements NMS {
 	}
 
 	@Override
-	public RegionManager getWGRegionManager(World world) {
-		RegionContainer container = WorldGuard.getInstance().getPlatform().getRegionContainer();
-		return container.get(BukkitAdapter.adapt(world));
-	}
-
-	@Override
-	public ApplicableRegionSet getApplicableRegionSet(Location loca) {
-		RegionManager rm = getWGRegionManager(loca.getWorld());
-		return rm.getApplicableRegions(BlockVector3.at(loca.getX(), loca.getY(), loca.getZ()));
+	public ItemStack removeNBTTag(ItemStack itemStack, String tag) {
+		net.minecraft.server.v1_14_R1.ItemStack nmsItemStack = CraftItemStack.asNMSCopy(itemStack);
+		if (nmsItemStack.hasTag()) {
+			NBTTagCompound itemCompound = nmsItemStack.getTag();
+			itemCompound.remove(tag);
+			nmsItemStack.setTag(itemCompound);
+			itemStack = CraftItemStack.asBukkitCopy(nmsItemStack);
+		}
+		return itemStack;
 	}
 }

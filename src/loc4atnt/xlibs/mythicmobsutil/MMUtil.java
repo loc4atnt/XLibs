@@ -44,8 +44,8 @@ public class MMUtil {
 		try {
 			for (int i = 0; i < amount; i++) {
 				Entity mob = api.spawnMythicMob(mobTypeName, spawnMobLocation);
-				synchronized (list) {
-					if (list != null) {
+				if (list != null) {
+					synchronized (list) {
 						list.add(mob);
 					}
 				}
@@ -62,6 +62,10 @@ public class MMUtil {
 		ActiveMob aM = MythicMobPlugin.getAPIHelper().getMythicMobInstance(mob);
 		aM.resetTarget();
 		MythicMobPlugin.getAPIHelper().taunt(mob, target);
+	}
+
+	public void spawnMythicMob(String mobTypeName, Location spawnMobLocation) {
+		spawnMythicMob(null, mobTypeName, spawnMobLocation, null, 1);
 	}
 
 	public void spawnMythicMob(List<Entity> list, String mobTypeName, Location spawnMobLocation, Player p) {

@@ -18,16 +18,6 @@ public class ItemX {
 	private ItemStack itemStack;
 	private NMS nms = XLibs.getInst().getNMS();
 
-	@SuppressWarnings("deprecation")
-	public ItemX(int typeId, int amount) {
-		this.itemStack = new ItemStack(typeId, amount);
-	}
-
-	@SuppressWarnings("deprecation")
-	public ItemX(int typeId, int amount, short damage, byte data) {
-		this.itemStack = new ItemStack(typeId, amount, damage, data);
-	}
-
 	public ItemX(Material material, int amount) {
 		this.itemStack = new ItemStack(material, amount);
 	}
@@ -61,10 +51,16 @@ public class ItemX {
 		return this.itemStack;
 	}
 
+	public int getAmount() {
+		return this.itemStack.getAmount();
+	}
+
+	@SuppressWarnings("deprecation")
 	public int getDura() {
 		return itemStack.getDurability();
 	}
 
+	@SuppressWarnings("deprecation")
 	public ItemX setDurability(short dura) {
 		itemStack.setDurability(dura);
 		return this;
@@ -135,6 +131,11 @@ public class ItemX {
 		return this;
 	}
 
+	public ItemX removeNBTTag(String tag) {
+		this.itemStack = nms.removeNBTTag(itemStack, tag);
+		return this;
+	}
+
 	public boolean hasNBTTag(String tag) {
 		return nms.hasNBTTag(itemStack, tag);
 	}
@@ -178,6 +179,19 @@ public class ItemX {
 		return getIntFromNBTTag(tag, 0);
 	}
 
+	public ItemX setLongToNBTTag(String tag, long value) {
+		this.itemStack = nms.setLongToNBTTag(itemStack, tag, value);
+		return this;
+	}
+
+	public long getLongFromNBTTag(String tag, long defValue) {
+		return nms.getLongFromNBTTag(itemStack, tag, defValue);
+	}
+
+	public long getLongFromNBTTag(String tag) {
+		return getLongFromNBTTag(tag, 0);
+	}
+
 	public ItemX setAmount(int amount) {
 		this.itemStack.setAmount(amount);
 		return this;
@@ -188,5 +202,9 @@ public class ItemX {
 		meta.setUnbreakable(toggle);
 		itemStack.setItemMeta(meta);
 		return this;
+	}
+
+	public Material getType() {
+		return itemStack.getType();
 	}
 }

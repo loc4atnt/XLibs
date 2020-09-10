@@ -21,6 +21,10 @@ public class ItemUtil {
 	}
 
 	public static void giveItemToPlayerOrWarnCleanInv(Player p, ItemStack item) {
+		giveItemToPlayerOrWarnCleanInv(p, item, 1);
+	}
+
+	public static void giveItemToPlayerOrWarnCleanInv(Player p, ItemStack item, int giveTimes) {
 		PlayerInventory inv = p.getInventory();
 		if (inv.firstEmpty() != -1) {
 			inv.addItem(item);
@@ -29,11 +33,13 @@ public class ItemUtil {
 
 				@Override
 				public void run() {
-					while (inv.firstEmpty() == -1) {
-						p.sendMessage("§cTúi đồ của bạn đã đầy! Cất hoặc vứt bớt đồ để nhận vật phẩm!");
-						ThreadUtil.delay(3000);
+					for (int i = 0; i < giveTimes; i++) {
+						while (inv.firstEmpty() == -1) {
+							p.sendMessage("§cTúi đồ của bạn đã đầy! Cất hoặc vứt bớt đồ để nhận vật phẩm!");
+							ThreadUtil.delay(3000);
+						}
+						inv.addItem(item);
 					}
-					inv.addItem(item);
 				}
 			});
 		}
@@ -65,12 +71,33 @@ public class ItemUtil {
 		return false;
 	}
 
-	@SuppressWarnings("deprecation")
-	public static boolean isArmor(ItemStack item) {
-		if (item == null || (item.getType().equals(Material.AIR)))
-			return false;
-
-		int typeId = item.getTypeId();
-		return (typeId >= 298 && typeId <= 317);
+	public static boolean checkEnoughAmountOfItem(ItemStack removedItem, int amount, Player p) {
+		PlayerInventory inv = p.getInventory();
+		ItemStack invItem[] = inv.getContents();
+		for (ItemStack item : invItem) {
+			if (item == null)
+				continue;
+			if (item.getType().equals(Material.AIR))
+				continue;
+			if (item.isSimilar(removedItem)) {
+				int itemAmount = item.getAmount();
+				if (itemAmount > amount)
+					amount = 0;
+				else
+					amount -= itemAmount;
+			}
+			if (amount <= 0)
+				return true;
+		}
+		return false;
 	}
+
+//	@SuppressWarnings("deprecation")
+//	public static boolean isArmor(ItemStack item) {
+//		if (item == null || (item.getType().equals(Material.AIR)))
+//			return false;
+//
+//		int typeId = item.getTypeId();
+//		return (typeId >= 298 && typeId <= 317);
+//	}
 }
