@@ -52,6 +52,10 @@ public class ItemX {
 	private ItemX(ItemStack item, Object o) {
 		this.itemStack = item;
 	}
+	
+	public int getAmount() {
+		return this.itemStack.getAmount();
+	}
 
 	public static ItemX toItemX(ItemStack item) {
 		return new ItemX(item, null);

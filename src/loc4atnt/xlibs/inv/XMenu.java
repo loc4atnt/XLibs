@@ -113,9 +113,9 @@ public abstract class XMenu {
 		return getInteractClickableItem(cont, null, row, column);
 	}
 
-	public static void setupPage3X9(Player p, InventoryContents cont, XMenu previousMenu, ClickableItem... clicks) {
-		cont.fillBorders(
-				ClickableItem.empty(new ItemX(Material.STAINED_GLASS_PANE, 1, (short) 1, (byte) 12).toItemStack()));
+	public static void setupPage3X9(Player p, InventoryContents cont, XMenu previousMenu, ClickableItem fillClick,
+			ClickableItem... clicks) {
+		cont.fillBorders(fillClick);
 
 		Pagination page = cont.pagination();
 		page.setItems(clicks);
@@ -146,6 +146,12 @@ public abstract class XMenu {
 			});
 			cont.set(2, 4, closeClick);
 		}
+	}
+
+	public static void setupPage3X9(Player p, InventoryContents cont, XMenu previousMenu, ClickableItem... clicks) {
+		setupPage3X9(p, cont, previousMenu,
+				ClickableItem.empty(new ItemX(Material.STAINED_GLASS_PANE, 1, (short) 1, (byte) 12).toItemStack()),
+				clicks);
 	}
 
 	public static void setupPage3X9(Player p, InventoryContents cont, ClickableItem... clicks) {
