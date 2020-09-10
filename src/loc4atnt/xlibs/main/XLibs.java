@@ -10,7 +10,6 @@ import org.bukkit.plugin.java.JavaPlugin;
 import loc4atnt.xlibs.chat.InputViaChatManager;
 import loc4atnt.xlibs.config.SimpleConfigManager;
 import loc4atnt.xlibs.external.smartinv.fr.minuskube.inv.SmartInvsPlugin;
-import loc4atnt.xlibs.external.wgrevent.WGREvent;
 import loc4atnt.xlibs.item.SavingItemManager;
 import loc4atnt.xlibs.item.command.SavingItemCommand;
 import loc4atnt.xlibs.item.command.XNBTTagCommand;
@@ -37,7 +36,6 @@ public class XLibs extends JavaPlugin {
 		cfgMnger = new SimpleConfigManager(this);
 		setupNMS();
 		new SmartInvsPlugin().register();
-		new WGREvent().register();
 		new SavingItemManager();
 		new PlayerPointsManager();
 		new MoneyManager();

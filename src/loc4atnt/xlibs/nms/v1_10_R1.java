@@ -3,18 +3,12 @@ package loc4atnt.xlibs.nms;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.bukkit.Location;
-import org.bukkit.World;
 import org.bukkit.craftbukkit.v1_10_R1.entity.CraftPlayer;
 import org.bukkit.craftbukkit.v1_10_R1.inventory.CraftItemStack;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SkullMeta;
 
-import com.sk89q.worldguard.protection.ApplicableRegionSet;
-import com.sk89q.worldguard.protection.managers.RegionManager;
-
-import loc4atnt.xlibs.external.wgrevent.WGREvent;
 import net.minecraft.server.v1_10_R1.IChatBaseComponent;
 import net.minecraft.server.v1_10_R1.IChatBaseComponent.ChatSerializer;
 import net.minecraft.server.v1_10_R1.NBTBase;
@@ -149,17 +143,5 @@ public class v1_10_R1 implements NMS {
 			itemStack = CraftItemStack.asBukkitCopy(nmsItemStack);
 		}
 		return itemStack;
-	}
-
-	@Override
-	public RegionManager getWGRegionManager(World world) {
-		return WGREvent.wgPlugin.getRegionManager(world);
-	}
-
-	@Override
-
-	public ApplicableRegionSet getApplicableRegionSet(Location loca) {
-		RegionManager rm = getWGRegionManager(loca.getWorld());
-		return rm.getApplicableRegions(loca);
 	}
 }
