@@ -43,6 +43,7 @@ public class InputViaChatManager implements Listener {
 		if (!e.getMessage().equals("huy")) {
 			task.accept(e);
 		}
+		e.setCancelled(true);
 		p.playSound(p.getLocation(), Sound.BLOCK_NOTE_BLOCK_BELL, 1, 1);
 	}
 }

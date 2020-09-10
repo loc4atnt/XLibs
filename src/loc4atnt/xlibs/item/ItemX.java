@@ -51,6 +51,10 @@ public class ItemX {
 		return this.itemStack;
 	}
 
+	public int getAmount() {
+		return this.itemStack.getAmount();
+	}
+
 	@SuppressWarnings("deprecation")
 	public int getDura() {
 		return itemStack.getDurability();

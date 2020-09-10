@@ -21,6 +21,10 @@ public class ItemUtil {
 	}
 
 	public static void giveItemToPlayerOrWarnCleanInv(Player p, ItemStack item) {
+		giveItemToPlayerOrWarnCleanInv(p, item, 1);
+	}
+
+	public static void giveItemToPlayerOrWarnCleanInv(Player p, ItemStack item, int giveTimes) {
 		PlayerInventory inv = p.getInventory();
 		if (inv.firstEmpty() != -1) {
 			inv.addItem(item);
@@ -29,11 +33,13 @@ public class ItemUtil {
 
 				@Override
 				public void run() {
-					while (inv.firstEmpty() == -1) {
-						p.sendMessage("§cTúi đồ của bạn đã đầy! Cất hoặc vứt bớt đồ để nhận vật phẩm!");
-						ThreadUtil.delay(3000);
+					for (int i = 0; i < giveTimes; i++) {
+						while (inv.firstEmpty() == -1) {
+							p.sendMessage("§cTúi đồ của bạn đã đầy! Cất hoặc vứt bớt đồ để nhận vật phẩm!");
+							ThreadUtil.delay(3000);
+						}
+						inv.addItem(item);
 					}
-					inv.addItem(item);
 				}
 			});
 		}
