@@ -17,7 +17,7 @@ import loc4atnt.xlibs.external.smartinv.fr.minuskube.inv.content.Pagination;
 import loc4atnt.xlibs.external.smartinv.fr.minuskube.inv.content.SlotIterator;
 import loc4atnt.xlibs.item.ItemX;
 
-public abstract class XMenu {
+public abstract class XMenu implements InventoryProvider {
 
 	private SmartInventory inv;
 	private Player p;
@@ -30,65 +30,54 @@ public abstract class XMenu {
 		return rows;
 	}
 
-	public XMenu(Player p, String id, String title, int row, int column, InventoryProvider provider,
-			boolean denyPlayerClosing) {
+	public XMenu(Player p, String id, String title, int row, int column, boolean denyPlayerClosing) {
 		this.p = p;
-		this.inv = SmartInventory.builder().id(p.getName() + id).title(title).size(row, column).provider(provider)
+		this.inv = SmartInventory.builder().id(p.getName() + id).title(title).size(row, column).provider(this)
 				.closeable(!denyPlayerClosing).build();
 	}
 
-	public XMenu(String id, String title, int row, int column, InventoryProvider provider) {
+	public XMenu(String id, String title, int row, int column) {
 		this.p = null;
-		this.inv = SmartInventory.builder().id(id).title(title).size(row, column).provider(provider).build();
+		this.inv = SmartInventory.builder().id(id).title(title).size(row, column).provider(this).build();
 	}
 
-	public XMenu(Player p, String id, String title, int row, InventoryProvider provider) {
+	public XMenu(Player p, String id, String title, int row) {
 		this.p = p;
-		this.inv = SmartInventory.builder().id(p.getName() + id).title(title).size(row, 9).provider(provider).build();
+		this.inv = SmartInventory.builder().id(p.getName() + id).title(title).size(row, 9).provider(this).build();
 	}
 
-	public XMenu(Player p, String id, String title, int row, int column, InventoryProvider provider) {
+	public XMenu(Player p, String id, String title, int row, int column) {
 		this.p = p;
-		this.inv = SmartInventory.builder().id(p.getName() + id).title(title).size(row, column).provider(provider)
+		this.inv = SmartInventory.builder().id(p.getName() + id).title(title).size(row, column).provider(this)
 				.build();
 	}
 
-	public XMenu(Player p, String id, String title, int row, int column, InventoryProvider provider,
-			boolean denyPlayerClosing, InventoryListener<? extends Event> listener) {
+	public XMenu(Player p, String id, String title, int row, int column, boolean denyPlayerClosing, InventoryListener<? extends Event> listener) {
 		this.p = p;
-		this.inv = SmartInventory.builder().id(p.getName() + id).title(title).size(row, column).provider(provider)
+		this.inv = SmartInventory.builder().id(p.getName() + id).title(title).size(row, column).provider(this)
 				.closeable(!denyPlayerClosing).listener(listener).build();
 	}
 
-	public XMenu(Player p, String id, String title, int row, int column, InventoryProvider provider,
-			InventoryListener<? extends Event> listener) {
+	public XMenu(Player p, String id, String title, int row, int column, InventoryListener<? extends Event> listener) {
 		this.p = p;
-		this.inv = SmartInventory.builder().id(p.getName() + id).title(title).size(row, column).provider(provider)
+		this.inv = SmartInventory.builder().id(p.getName() + id).title(title).size(row, column).provider(this)
 				.listener(listener).build();
 	}
 
 	public void open() {
-		open(false);
-	}
-
-	public void open(boolean isAsync) {
 		if (p == null) {
 			Bukkit.getConsoleSender().sendMessage("§cError With XMenu - XLibs: null player open menu!");
 			return;
 		}
-		inv.open(p, isAsync);
+		inv.open(p);
 	}
 
 	public void open(int page) {
-		open(page, false);
-	}
-
-	public void open(int page, boolean isAsync) {
 		if (p == null) {
 			Bukkit.getConsoleSender().sendMessage("§cError With XMenu - XLibs: null player open menu!");
 			return;
 		}
-		inv.open(p, page, isAsync);
+		inv.open(p, page);
 	}
 
 	public void open(Player player) {
@@ -99,18 +88,10 @@ public abstract class XMenu {
 		inv.open(player, page);
 	}
 
-	public void open(Player player, boolean isAsync) {
-		inv.open(player, isAsync);
-	}
-
-	public void open(Player player, int page, boolean isAsync) {
-		inv.open(player, page, isAsync);
-	}
-
 	@SuppressWarnings("deprecation")
 	public static ClickableItem getInteractClickableItem(InventoryContents cont, ItemStack firstItem, int row,
 			int column) {
-		return ClickableItem.of(null, e -> {
+		return ClickableItem.of(firstItem, e -> {
 			ItemStack cursorItem = e.getCursor();
 			ItemStack putItem = e.getCurrentItem();
 			if (putItem != null) {
@@ -166,11 +147,14 @@ public abstract class XMenu {
 
 	public static void setupPage3X9(Player p, InventoryContents cont, XMenu previousMenu, ClickableItem... clicks) {
 		setupPage3X9(p, cont, previousMenu,
-				ClickableItem.empty(new ItemX(Material.BLUE_STAINED_GLASS_PANE, 1, (short) 1, (byte) 12).toItemStack()),
+				ClickableItem.empty(new ItemX(Material.STAINED_GLASS_PANE, 1, (short) 1, (byte) 12).toItemStack()),
 				clicks);
 	}
 
 	public static void setupPage3X9(Player p, InventoryContents cont, ClickableItem... clicks) {
 		setupPage3X9(p, cont, null, clicks);
 	}
+	
+	//public abstract void init(Player player, InventoryContents contents);
+	//public abstract void update(Player player, InventoryContents contents);
 }
