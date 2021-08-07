@@ -3,11 +3,13 @@ package loc4atnt.xlibs.nms;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.bukkit.Material;
 import org.bukkit.craftbukkit.v1_15_R1.inventory.CraftItemStack;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SkullMeta;
 
+import loc4atnt.xlibs.external.xseries.XMaterial;
 import net.minecraft.server.v1_15_R1.NBTBase;
 import net.minecraft.server.v1_15_R1.NBTTagCompound;
 import net.minecraft.server.v1_15_R1.NBTTagIntArray;
@@ -137,5 +139,20 @@ public class v1_15_R1 implements NMS {
 			itemStack = CraftItemStack.asBukkitCopy(nmsItemStack);
 		}
 		return itemStack;
+	}
+
+	@Override
+	public ItemStack getSkullItem(boolean isItem) {
+		return new ItemStack(((isItem) ? XMaterial.PLAYER_HEAD : XMaterial.PLAYER_WALL_HEAD).parseMaterial());
+	}
+
+	@Override
+	public Material getSkullMaterial(boolean isItem) {
+		return (((isItem) ? XMaterial.PLAYER_HEAD : XMaterial.PLAYER_WALL_HEAD).parseMaterial());
+	}
+
+	@Override
+	public ItemStack getFillMenuItem() {
+		return new ItemStack(XMaterial.BLUE_STAINED_GLASS_PANE.parseMaterial());
 	}
 }

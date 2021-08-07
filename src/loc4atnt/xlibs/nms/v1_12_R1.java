@@ -4,23 +4,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.bukkit.Material;
-import org.bukkit.craftbukkit.v1_14_R1.inventory.CraftItemStack;
+import org.bukkit.craftbukkit.v1_12_R1.inventory.CraftItemStack;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SkullMeta;
 
-import loc4atnt.xlibs.external.xseries.XMaterial;
-import net.minecraft.server.v1_14_R1.NBTBase;
-import net.minecraft.server.v1_14_R1.NBTTagCompound;
-import net.minecraft.server.v1_14_R1.NBTTagInt;
-import net.minecraft.server.v1_14_R1.NBTTagIntArray;
-import net.minecraft.server.v1_14_R1.NBTTagLong;
-import net.minecraft.server.v1_14_R1.NBTTagString;
+import net.minecraft.server.v1_12_R1.NBTBase;
+import net.minecraft.server.v1_12_R1.NBTTagCompound;
+import net.minecraft.server.v1_12_R1.NBTTagInt;
+import net.minecraft.server.v1_12_R1.NBTTagIntArray;
+import net.minecraft.server.v1_12_R1.NBTTagLong;
+import net.minecraft.server.v1_12_R1.NBTTagString;
 
-public class v1_14_R1 implements NMS {
+public class v1_12_R1 implements NMS {
 
 	public ItemStack setNBTTag(ItemStack itemStack, String tag, NBTBase value) {
-		net.minecraft.server.v1_14_R1.ItemStack nmsItemStack = CraftItemStack.asNMSCopy(itemStack);
+		net.minecraft.server.v1_12_R1.ItemStack nmsItemStack = CraftItemStack.asNMSCopy(itemStack);
 		NBTTagCompound itemCompound = (nmsItemStack.hasTag()) ? nmsItemStack.getTag() : new NBTTagCompound();
 		itemCompound.set(tag, value);
 		nmsItemStack.setTag(itemCompound);
@@ -29,7 +28,7 @@ public class v1_14_R1 implements NMS {
 	}
 
 	public NBTTagCompound getNBTTag(ItemStack itemStack) {
-		net.minecraft.server.v1_14_R1.ItemStack nmsItemStack = CraftItemStack.asNMSCopy(itemStack);
+		net.minecraft.server.v1_12_R1.ItemStack nmsItemStack = CraftItemStack.asNMSCopy(itemStack);
 		NBTTagCompound itemCompound = (nmsItemStack.hasTag()) ? nmsItemStack.getTag() : new NBTTagCompound();
 		return itemCompound;
 	}
@@ -106,7 +105,7 @@ public class v1_14_R1 implements NMS {
 
 	@Override
 	public boolean hasNBTTag(ItemStack itemStack, String tag) {
-		net.minecraft.server.v1_14_R1.ItemStack nmsItemStack = CraftItemStack.asNMSCopy(itemStack);
+		net.minecraft.server.v1_12_R1.ItemStack nmsItemStack = CraftItemStack.asNMSCopy(itemStack);
 		if (nmsItemStack.hasTag()) {
 			NBTTagCompound itemCompound = nmsItemStack.getTag();
 			return itemCompound.hasKey(tag);
@@ -116,7 +115,7 @@ public class v1_14_R1 implements NMS {
 
 	@Override
 	public ItemStack removeNBTTag(ItemStack itemStack, String tag) {
-		net.minecraft.server.v1_14_R1.ItemStack nmsItemStack = CraftItemStack.asNMSCopy(itemStack);
+		net.minecraft.server.v1_12_R1.ItemStack nmsItemStack = CraftItemStack.asNMSCopy(itemStack);
 		if (nmsItemStack.hasTag()) {
 			NBTTagCompound itemCompound = nmsItemStack.getTag();
 			itemCompound.remove(tag);
@@ -128,16 +127,17 @@ public class v1_14_R1 implements NMS {
 
 	@Override
 	public ItemStack getSkullItem(boolean isItem) {
-		return new ItemStack(((isItem) ? XMaterial.PLAYER_HEAD : XMaterial.PLAYER_WALL_HEAD).parseMaterial());
+		return new ItemStack((isItem) ? Material.SKULL_ITEM : Material.SKULL, 1, (short) 3);
 	}
 
 	@Override
 	public Material getSkullMaterial(boolean isItem) {
-		return (((isItem) ? XMaterial.PLAYER_HEAD : XMaterial.PLAYER_WALL_HEAD).parseMaterial());
+		return ((isItem) ? Material.SKULL_ITEM : Material.SKULL);
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public ItemStack getFillMenuItem() {
-		return new ItemStack(XMaterial.BLUE_STAINED_GLASS_PANE.parseMaterial());
+		return new ItemStack(Material.STAINED_GLASS_PANE, 1, (short) 1, (byte) 12);
 	}
 }

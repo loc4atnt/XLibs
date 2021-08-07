@@ -4,9 +4,11 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry excluding="src/" kind="src" path=""/>
 	<classpathentry kind="lib" path="E:/Spigot jar file/PlayerPoints.jar"/>
-	<classpathentry kind="lib" path="E:/Spigot jar file/Vault_1_13up.jar"/>
+	<classpathentry kind="lib" path="E:/Spigot jar file/Vault.jar"/>
 	<classpathentry kind="lib" path="E:/Spigot jar file/MythicMobs-4.9.1.jar"/>
-	<classpathentry kind="lib" path="E:/Spigot jar file/spigot-1.15.2.jar"/>
+	<classpathentry kind="lib" path="E:/Spigot jar file/spigot-1.12.2.jar"/>
 	<classpathentry kind="lib" path="E:/Spigot jar file/spigot-1.14.4.jar"/>
+	<classpathentry kind="lib" path="E:/Spigot jar file/spigot-1.15.2.jar"/>
+	<classpathentry kind="lib" path="E:/Spigot jar file/spigot_1.10.2.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

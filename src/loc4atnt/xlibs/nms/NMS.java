@@ -2,6 +2,7 @@ package loc4atnt.xlibs.nms;
 
 import java.util.List;
 
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
@@ -32,4 +33,10 @@ public interface NMS {
 	public boolean hasNBTTag(ItemStack itemStack, String tag);
 
 	public ItemStack removeNBTTag(ItemStack itemStack, String tag);
+
+	public ItemStack getSkullItem(boolean isItem);
+
+	public Material getSkullMaterial(boolean isItem);
+
+	public ItemStack getFillMenuItem();
 }

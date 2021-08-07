@@ -1,6 +1,5 @@
 package loc4atnt.xlibs.item.skull;
 
-import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
@@ -11,13 +10,23 @@ public class PlayerSkull {
 	private ItemStack item;
 
 	public PlayerSkull(Player owner) {
-		item = new ItemStack(Material.PLAYER_HEAD);
+		item = XLibs.getInst().getNMS().getSkullItem(true);
 		XLibs.getInst().getNMS().setOwnerSkull(item, owner);
 	}
 
 	public PlayerSkull(String playerName) {
-		item = new ItemStack(Material.PLAYER_HEAD);
+		item = XLibs.getInst().getNMS().getSkullItem(true);
 		XLibs.getInst().getNMS().setOwnerSkull(item, playerName);
+	}
+
+	public PlayerSkull(boolean isItem, String playerName) {
+		item = XLibs.getInst().getNMS().getSkullItem(isItem);
+		XLibs.getInst().getNMS().setOwnerSkull(item, playerName);
+	}
+
+	public PlayerSkull(boolean isItem, Player owner) {
+		item = XLibs.getInst().getNMS().getSkullItem(isItem);
+		XLibs.getInst().getNMS().setOwnerSkull(item, owner);
 	}
 
 	public ItemStack toItem() {

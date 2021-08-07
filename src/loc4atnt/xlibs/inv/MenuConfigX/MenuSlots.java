@@ -3,7 +3,6 @@ package loc4atnt.xlibs.inv.MenuConfigX;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
@@ -21,7 +20,7 @@ public class MenuSlots {
 		this.slots = new ArrayList<Integer>(slots);
 		this.skinHead = skinHead;
 	}
-	
+
 	public MenuSlots(List<Integer> slots) {
 		this.item = null;
 		this.slots = new ArrayList<Integer>(slots);
@@ -35,7 +34,7 @@ public class MenuSlots {
 	}
 
 	public ItemX getItem(Player clicker) {
-		if (skinHead == null || (!item.getType().equals(Material.PLAYER_HEAD)))
+		if (skinHead == null || (!item.getType().equals(XLibs.getInst().getNMS().getSkullMaterial(true))))
 			return item;
 
 		ItemStack itemStack = item.toItemStack();

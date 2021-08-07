@@ -3,12 +3,12 @@ package loc4atnt.xlibs.chat;
 import java.util.HashMap;
 import java.util.function.Consumer;
 
-import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 
+import loc4atnt.xlibs.external.xseries.XSound;
 import loc4atnt.xlibs.main.XLibs;
 
 public class InputViaChatManager implements Listener {
@@ -44,6 +44,6 @@ public class InputViaChatManager implements Listener {
 			task.accept(e);
 		}
 		e.setCancelled(true);
-		p.playSound(p.getLocation(), Sound.BLOCK_NOTE_BLOCK_BELL, 1, 1);
+		p.playSound(p.getLocation(), XSound.BLOCK_NOTE_BLOCK_PLING.parseSound(), 1, 1);
 	}
 }

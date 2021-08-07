@@ -22,7 +22,6 @@ public class XTeamInfo {
 	private Team team;
 	private Objective obj;
 
-	@SuppressWarnings("deprecation")
 	public XTeamInfo(Player leader) {
 		this.leader = leader;
 		manager = Bukkit.getScoreboardManager();

@@ -16,6 +16,7 @@ import loc4atnt.xlibs.external.smartinv.fr.minuskube.inv.content.InventoryProvid
 import loc4atnt.xlibs.external.smartinv.fr.minuskube.inv.content.Pagination;
 import loc4atnt.xlibs.external.smartinv.fr.minuskube.inv.content.SlotIterator;
 import loc4atnt.xlibs.item.ItemX;
+import loc4atnt.xlibs.main.XLibs;
 
 public abstract class XMenu {
 
@@ -165,9 +166,7 @@ public abstract class XMenu {
 	}
 
 	public static void setupPage3X9(Player p, InventoryContents cont, XMenu previousMenu, ClickableItem... clicks) {
-		setupPage3X9(p, cont, previousMenu,
-				ClickableItem.empty(new ItemX(Material.BLUE_STAINED_GLASS_PANE, 1, (short) 1, (byte) 12).toItemStack()),
-				clicks);
+		setupPage3X9(p, cont, previousMenu, ClickableItem.empty(XLibs.getInst().getNMS().getFillMenuItem()), clicks);
 	}
 
 	public static void setupPage3X9(Player p, InventoryContents cont, ClickableItem... clicks) {

@@ -31,6 +31,11 @@ public class ItemX {
 		this.itemStack = new ItemStack(material, amount, damage, data);
 	}
 
+	@SuppressWarnings("deprecation")
+	public ItemX(int type, int amount, short damage, byte data) {
+		this.itemStack = new ItemStack(type, amount, damage, data);
+	}
+
 	public ItemX(ItemStack item) {
 		this.itemStack = new ItemStack(item);
 	}
@@ -55,12 +60,10 @@ public class ItemX {
 		return this.itemStack.getAmount();
 	}
 
-	@SuppressWarnings("deprecation")
 	public int getDura() {
 		return itemStack.getDurability();
 	}
 
-	@SuppressWarnings("deprecation")
 	public ItemX setDurability(short dura) {
 		itemStack.setDurability(dura);
 		return this;

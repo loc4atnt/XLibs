@@ -1,5 +1,7 @@
 package loc4atnt.xlibs.item;
 
+import java.util.List;
+
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -20,28 +22,48 @@ public class ItemUtil {
 		}
 	}
 
-	public static void giveItemToPlayerOrWarnCleanInv(Player p, ItemStack item) {
-		giveItemToPlayerOrWarnCleanInv(p, item, 1);
+	public static void giveItemToPlayerOrWarnCleanInv(Player p, ItemStack... item) {
+		giveItemToPlayerOrWarnCleanInv(p, 1, item);
+	}
+
+	public static void giveItemToPlayerOrWarnCleanInv(Player p, List<ItemStack> items) {
+		giveItemToPlayerOrWarnCleanInv(p, items, 1);
+	}
+
+	public static void giveItemToPlayerOrWarnCleanInv(Player p, List<ItemStack> items, int giveTimes) {
+		PlayerInventory inv = p.getInventory();
+		for (ItemStack item : items)
+			giveItemToPlayeInvOrWarnClean(p, inv, item, giveTimes);
+	}
+
+	public static void giveItemToPlayerOrWarnCleanInv(Player p, int giveTimes, ItemStack... items) {
+		PlayerInventory inv = p.getInventory();
+		for (ItemStack item : items)
+			giveItemToPlayeInvOrWarnClean(p, inv, item, giveTimes);
 	}
 
 	public static void giveItemToPlayerOrWarnCleanInv(Player p, ItemStack item, int giveTimes) {
 		PlayerInventory inv = p.getInventory();
-		if (inv.firstEmpty() != -1) {
-			inv.addItem(item);
-		} else {
-			XLibs.getInst().getServer().getScheduler().runTaskAsynchronously(XLibs.getInst(), new Runnable() {
+		giveItemToPlayeInvOrWarnClean(p, inv, item, giveTimes);
+	}
 
-				@Override
-				public void run() {
-					for (int i = 0; i < giveTimes; i++) {
+	private static void giveItemToPlayeInvOrWarnClean(Player p, PlayerInventory inv, ItemStack item, int giveTimes) {
+		for (int i = 0; i < giveTimes; i++) {
+			if (inv.firstEmpty() != -1) {
+				inv.addItem(item);
+			} else {
+				XLibs.getInst().getServer().getScheduler().runTaskAsynchronously(XLibs.getInst(), new Runnable() {
+
+					@Override
+					public void run() {
 						while (inv.firstEmpty() == -1) {
 							p.sendMessage("§cTúi đồ của bạn đã đầy! Cất hoặc vứt bớt đồ để nhận vật phẩm!");
 							ThreadUtil.delay(3000);
 						}
 						inv.addItem(item);
 					}
-				}
-			});
+				});
+			}
 		}
 	}
 
