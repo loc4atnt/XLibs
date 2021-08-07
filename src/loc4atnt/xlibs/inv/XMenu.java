@@ -17,7 +17,7 @@ import loc4atnt.xlibs.external.smartinv.fr.minuskube.inv.content.Pagination;
 import loc4atnt.xlibs.external.smartinv.fr.minuskube.inv.content.SlotIterator;
 import loc4atnt.xlibs.item.ItemX;
 
-public abstract class XMenu {
+public abstract class XMenu implements InventoryProvider {
 
 	private SmartInventory inv;
 	private Player p;
@@ -30,40 +30,37 @@ public abstract class XMenu {
 		return rows;
 	}
 
-	public XMenu(Player p, String id, String title, int row, int column, InventoryProvider provider,
-			boolean denyPlayerClosing) {
+	public XMenu(Player p, String id, String title, int row, int column, boolean denyPlayerClosing) {
 		this.p = p;
-		this.inv = SmartInventory.builder().id(p.getName() + id).title(title).size(row, column).provider(provider)
+		this.inv = SmartInventory.builder().id(p.getName() + id).title(title).size(row, column).provider(this)
 				.closeable(!denyPlayerClosing).build();
 	}
 
-	public XMenu(String id, String title, int row, int column, InventoryProvider provider) {
+	public XMenu(String id, String title, int row, int column) {
 		this.p = null;
-		this.inv = SmartInventory.builder().id(id).title(title).size(row, column).provider(provider).build();
+		this.inv = SmartInventory.builder().id(id).title(title).size(row, column).provider(this).build();
 	}
 
-	public XMenu(Player p, String id, String title, int row, InventoryProvider provider) {
+	public XMenu(Player p, String id, String title, int row) {
 		this.p = p;
-		this.inv = SmartInventory.builder().id(p.getName() + id).title(title).size(row, 9).provider(provider).build();
+		this.inv = SmartInventory.builder().id(p.getName() + id).title(title).size(row, 9).provider(this).build();
 	}
 
-	public XMenu(Player p, String id, String title, int row, int column, InventoryProvider provider) {
+	public XMenu(Player p, String id, String title, int row, int column) {
 		this.p = p;
-		this.inv = SmartInventory.builder().id(p.getName() + id).title(title).size(row, column).provider(provider)
+		this.inv = SmartInventory.builder().id(p.getName() + id).title(title).size(row, column).provider(this)
 				.build();
 	}
 
-	public XMenu(Player p, String id, String title, int row, int column, InventoryProvider provider,
-			boolean denyPlayerClosing, InventoryListener<? extends Event> listener) {
+	public XMenu(Player p, String id, String title, int row, int column, boolean denyPlayerClosing, InventoryListener<? extends Event> listener) {
 		this.p = p;
-		this.inv = SmartInventory.builder().id(p.getName() + id).title(title).size(row, column).provider(provider)
+		this.inv = SmartInventory.builder().id(p.getName() + id).title(title).size(row, column).provider(this)
 				.closeable(!denyPlayerClosing).listener(listener).build();
 	}
 
-	public XMenu(Player p, String id, String title, int row, int column, InventoryProvider provider,
-			InventoryListener<? extends Event> listener) {
+	public XMenu(Player p, String id, String title, int row, int column, InventoryListener<? extends Event> listener) {
 		this.p = p;
-		this.inv = SmartInventory.builder().id(p.getName() + id).title(title).size(row, column).provider(provider)
+		this.inv = SmartInventory.builder().id(p.getName() + id).title(title).size(row, column).provider(this)
 				.listener(listener).build();
 	}
 
@@ -157,4 +154,7 @@ public abstract class XMenu {
 	public static void setupPage3X9(Player p, InventoryContents cont, ClickableItem... clicks) {
 		setupPage3X9(p, cont, null, clicks);
 	}
+	
+	//public abstract void init(Player player, InventoryContents contents);
+	//public abstract void update(Player player, InventoryContents contents);
 }
