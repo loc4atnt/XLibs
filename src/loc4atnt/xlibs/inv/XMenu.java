@@ -147,7 +147,7 @@ public abstract class XMenu implements InventoryProvider {
 
 	public static void setupPage3X9(Player p, InventoryContents cont, XMenu previousMenu, ClickableItem... clicks) {
 		setupPage3X9(p, cont, previousMenu,
-				ClickableItem.empty(new ItemX(Material.STAINED_GLASS_PANE, 1, (short) 1, (byte) 12).toItemStack()),
+				ClickableItem.empty(new ItemX(Material.BLUE_STAINED_GLASS_PANE, 1).toItemStack()),
 				clicks);
 	}
 

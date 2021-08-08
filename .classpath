@@ -1,12 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry excluding="src/" kind="src" path=""/>
-	<classpathentry kind="lib" path="E:/Spigot jar file/PlayerPoints.jar"/>
-	<classpathentry kind="lib" path="E:/Spigot jar file/Vault_1_13up.jar"/>
-	<classpathentry kind="lib" path="E:/Spigot jar file/MythicMobs-4.9.1.jar"/>
-	<classpathentry kind="lib" path="E:/Spigot jar file/spigot-1.15.2.jar"/>
-	<classpathentry kind="lib" path="E:/Spigot jar file/spigot-1.14.4.jar"/>
+	<classpathentry kind="lib" path="D:/Nhâm/eclipse/Minecraft Dev/Spigot jar file/PlayerPoints.jar"/>
+	<classpathentry kind="lib" path="D:/Nhâm/eclipse/Minecraft Dev/Spigot jar file/Vault_1_13up.jar"/>
+	<classpathentry kind="lib" path="D:/Nhâm/eclipse/Minecraft Dev/Spigot jar file/MythicMobs-4.9.1.jar"/>
+	<classpathentry kind="lib" path="D:/Nhâm/eclipse/Minecraft Dev/Spigot jar file/spigot-1.15.2.jar"/>
+	<classpathentry kind="lib" path="D:/Nhâm/eclipse/Minecraft Dev/Spigot jar file/spigot-1.14.4.jar"/>
+	<classpathentry kind="lib" path="D:/Nhâm/eclipse/Minecraft Dev/Spigot jar file/spigot-command-api/reflections-0.9.12.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
