@@ -12,5 +12,6 @@
 	<classpathentry kind="lib" path="D:/Nhâm/eclipse/Minecraft Dev/Spigot jar file/Vault.jar"/>
 	<classpathentry kind="lib" path="D:/Nhâm/eclipse/Minecraft Dev/Spigot jar file/MythicMobs-4.9.1.jar"/>
 	<classpathentry kind="lib" path="D:/Nhâm/eclipse/Minecraft Dev/Spigot jar file/spigot_1.10.2.jar"/>
+	<classpathentry kind="lib" path="D:/Nhâm/eclipse/Minecraft Dev/Spigot jar file/spigot-command-api/reflections-0.9.12.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
