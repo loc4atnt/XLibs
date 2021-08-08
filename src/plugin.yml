@@ -2,7 +2,7 @@ name: XLibs
 author: loc4atnt
 main: loc4atnt.xlibs.main.XLibs
 version: 1.0.1
-depend: [PlayerPoints]
+depend: [PlayerPoints,Vault]
 commands:
     xtag:
     saveitem:
