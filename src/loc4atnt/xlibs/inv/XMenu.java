@@ -63,6 +63,42 @@ public abstract class XMenu implements InventoryProvider {
 		this.inv = SmartInventory.builder().id(p.getName() + id).title(title).size(row, column).provider(this)
 				.listener(listener).build();
 	}
+	
+///////////// Old Version
+	public XMenu(Player p, String id, String title, int row, int column, boolean denyPlayerClosing, InventoryProvider provider) {
+		this.p = p;
+		this.inv = SmartInventory.builder().id(p.getName() + id).title(title).size(row, column).provider(provider)
+				.closeable(!denyPlayerClosing).build();
+	}
+
+	public XMenu(String id, String title, int row, int column, InventoryProvider provider) {
+		this.p = null;
+		this.inv = SmartInventory.builder().id(id).title(title).size(row, column).provider(provider).build();
+	}
+
+	public XMenu(Player p, String id, String title, int row, InventoryProvider provider) {
+		this.p = p;
+		this.inv = SmartInventory.builder().id(p.getName() + id).title(title).size(row, 9).provider(provider).build();
+	}
+
+	public XMenu(Player p, String id, String title, int row, int column, InventoryProvider provider) {
+		this.p = p;
+		this.inv = SmartInventory.builder().id(p.getName() + id).title(title).size(row, column).provider(provider)
+				.build();
+	}
+
+	public XMenu(Player p, String id, String title, int row, int column, boolean denyPlayerClosing, InventoryListener<? extends Event> listener, InventoryProvider provider) {
+		this.p = p;
+		this.inv = SmartInventory.builder().id(p.getName() + id).title(title).size(row, column).provider(provider)
+				.closeable(!denyPlayerClosing).listener(listener).build();
+	}
+
+	public XMenu(Player p, String id, String title, int row, int column, InventoryListener<? extends Event> listener, InventoryProvider provider) {
+		this.p = p;
+		this.inv = SmartInventory.builder().id(p.getName() + id).title(title).size(row, column).provider(provider)
+				.listener(listener).build();
+	}
+///////////////
 
 	public void open() {
 		if (p == null) {
@@ -147,7 +183,7 @@ public abstract class XMenu implements InventoryProvider {
 
 	public static void setupPage3X9(Player p, InventoryContents cont, XMenu previousMenu, ClickableItem... clicks) {
 		setupPage3X9(p, cont, previousMenu,
-				ClickableItem.empty(new ItemX(Material.BLUE_STAINED_GLASS_PANE, 1).toItemStack()),
+				ClickableItem.empty(new ItemX(Material.STAINED_GLASS_PANE, 1, (short) 1, (byte) 12).toItemStack()),
 				clicks);
 	}
 
