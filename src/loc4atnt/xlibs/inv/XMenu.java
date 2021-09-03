@@ -63,6 +63,42 @@ public abstract class XMenu implements InventoryProvider {
 		this.inv = SmartInventory.builder().id(p.getName() + id).title(title).size(row, column).provider(this)
 				.listener(listener).build();
 	}
+	
+///////////// Old Version
+	public XMenu(Player p, String id, String title, int row, int column, boolean denyPlayerClosing, InventoryProvider provider) {
+		this.p = p;
+		this.inv = SmartInventory.builder().id(p.getName() + id).title(title).size(row, column).provider(provider)
+				.closeable(!denyPlayerClosing).build();
+	}
+
+	public XMenu(String id, String title, int row, int column, InventoryProvider provider) {
+		this.p = null;
+		this.inv = SmartInventory.builder().id(id).title(title).size(row, column).provider(provider).build();
+	}
+
+	public XMenu(Player p, String id, String title, int row, InventoryProvider provider) {
+		this.p = p;
+		this.inv = SmartInventory.builder().id(p.getName() + id).title(title).size(row, 9).provider(provider).build();
+	}
+
+	public XMenu(Player p, String id, String title, int row, int column, InventoryProvider provider) {
+		this.p = p;
+		this.inv = SmartInventory.builder().id(p.getName() + id).title(title).size(row, column).provider(provider)
+				.build();
+	}
+
+	public XMenu(Player p, String id, String title, int row, int column, boolean denyPlayerClosing, InventoryListener<? extends Event> listener, InventoryProvider provider) {
+		this.p = p;
+		this.inv = SmartInventory.builder().id(p.getName() + id).title(title).size(row, column).provider(provider)
+				.closeable(!denyPlayerClosing).listener(listener).build();
+	}
+
+	public XMenu(Player p, String id, String title, int row, int column, InventoryListener<? extends Event> listener, InventoryProvider provider) {
+		this.p = p;
+		this.inv = SmartInventory.builder().id(p.getName() + id).title(title).size(row, column).provider(provider)
+				.listener(listener).build();
+	}
+///////////////
 
 	public void open() {
 		if (p == null) {
